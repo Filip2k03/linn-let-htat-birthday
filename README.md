@@ -1,10 +1,8 @@
-# Linn Let Htat — Magical 8th Birthday World
+# Linn Let Htat | Magical 8th Birthday World
 
-Birthday: **23 November 2026** · Born **23 November 2018**.
+React 18 + Vite + React Three Fiber + Drei + Three.js birthday garden. Built for 23 November 2026.
 
-Interactive React / Vite / React Three Fiber 3D birthday garden: 8 wish balloons, cake with 8 candles, three gifts, twilight wish lanterns and a 30-second three-lane ring dash with a clearly visible 3D runner.
-
-## Development
+## Run
 
 ```sh
 npm install
@@ -13,14 +11,21 @@ npm run build
 npm run preview
 ```
 
-## Deployment
+Vercel: Framework **Vite**, build command `npm run build`, output directory `dist`. The GitHub-connected Vercel project deploys `main` automatically.
 
-Vercel: Vite framework, `npm run build`, `dist` output, Node.js 22. Connected GitHub `main` branch triggers production. All 3D models are procedural and render without external model requests.
+## Mobile behavior
 
-## Controls
+- WebGL capability gate and festive non-WebGL fallback; React error boundary and Suspense fallback.
+- WebGL context-loss fallback and manual retry, context restoration listeners with cleanup.
+- Canvas frame loop disabled while the document is hidden; dash timer pauses on visibility change.
+- Dynamic pixel ratio: mobile 1–1.5, desktop up to 2 in high quality. Eco mode lowers DPR and disables shadows.
+- 44px touch targets, safe-area insets, 100dvh, accessible wishes and mute-by-default Web Audio.
+- Procedural scene geometry; no remote HDRI or texture dependency. Google Fonts are optional and system fonts provide fallback.
 
-Desktop: drag/scroll in garden, arrows or A/D in dash; P / Space to pause. Mobile: swipe, tap navigation, LEFT / RIGHT controls. Audio only starts on direct interactions. Lantern wishes remain on the device in memory. The best ring score uses localStorage.
+## Known limitations / testing
 
-## Performance
-
-WebGL is required; lower-quality mode reduces shadows, antialiasing and device pixel ratio. Respect reduced-motion settings. No microphone permission or account registration.
+- No guarantee of 60fps on every GPU. Use Eco mode on older iPhones.
+- iOS Chrome and Safari both use WebKit; test real devices, thermal throttling, tab background/restore and app switching.
+- Full npm build, ESLint and physical-device testing require dependencies and devices; a TypeScript JSX syntax transpile check alone is not a full build.
+- In-game score uses state; the full game should be browser-tested for collisions and camera framing.
+- The birthday card is generated artwork. The included Sonic image is supplied by the user.
